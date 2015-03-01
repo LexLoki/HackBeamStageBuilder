@@ -16,6 +16,9 @@
 		FDA749921AA0BD5E00D8C3C6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDA749911AA0BD5E00D8C3C6 /* Images.xcassets */; };
 		FDA749951AA0BD5E00D8C3C6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDA749931AA0BD5E00D8C3C6 /* LaunchScreen.xib */; };
 		FDA749A11AA0BD5E00D8C3C6 /* stageBuilderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FDA749A01AA0BD5E00D8C3C6 /* stageBuilderTests.m */; };
+		FDA749AB1AA1693000D8C3C6 /* leftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA749AA1AA1693000D8C3C6 /* leftArrow.png */; };
+		FDA749AD1AA1694200D8C3C6 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA749AC1AA1694200D8C3C6 /* rightArrow.png */; };
+		FDCDCB3A1AA372C000AC3603 /* textbox.png in Resources */ = {isa = PBXBuildFile; fileRef = FDCDCB391AA372C000AC3603 /* textbox.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +48,9 @@
 		FDA7499A1AA0BD5E00D8C3C6 /* stageBuilderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = stageBuilderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDA7499F1AA0BD5E00D8C3C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDA749A01AA0BD5E00D8C3C6 /* stageBuilderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = stageBuilderTests.m; sourceTree = "<group>"; };
+		FDA749AA1AA1693000D8C3C6 /* leftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftArrow.png; sourceTree = "<group>"; };
+		FDA749AC1AA1694200D8C3C6 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
+		FDCDCB391AA372C000AC3603 /* textbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = textbox.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 				FDA7497E1AA0BD5E00D8C3C6 /* stageBuilder */,
 				FDA7499D1AA0BD5E00D8C3C6 /* stageBuilderTests */,
 				FDA7497D1AA0BD5E00D8C3C6 /* Products */,
+				FDA749AA1AA1693000D8C3C6 /* leftArrow.png */,
+				FDA749AC1AA1694200D8C3C6 /* rightArrow.png */,
+				FDCDCB391AA372C000AC3603 /* textbox.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -209,7 +218,10 @@
 			files = (
 				FDA749951AA0BD5E00D8C3C6 /* LaunchScreen.xib in Resources */,
 				FDA749921AA0BD5E00D8C3C6 /* Images.xcassets in Resources */,
+				FDA749AB1AA1693000D8C3C6 /* leftArrow.png in Resources */,
 				FDA7498A1AA0BD5E00D8C3C6 /* GameScene.sks in Resources */,
+				FDCDCB3A1AA372C000AC3603 /* textbox.png in Resources */,
+				FDA749AD1AA1694200D8C3C6 /* rightArrow.png in Resources */,
 				FDA749901AA0BD5E00D8C3C6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,6 +434,7 @@
 				FDA749A61AA0BD5E00D8C3C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FDA749A71AA0BD5E00D8C3C6 /* Build configuration list for PBXNativeTarget "stageBuilderTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +443,7 @@
 				FDA749A91AA0BD5E00D8C3C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
