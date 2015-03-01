@@ -410,7 +410,7 @@ bool drawState;
     NSInteger i, quant=portals.count;
     for(i=0;i<quant;i++){
         SKSpriteNode *node = portals[i];
-        if(portal.position.y<node.position.y || (portal.position.y==node.position.y && portal.position.x<node.position.x))
+        if(portal.position.y>node.position.y || (portal.position.y==node.position.y && portal.position.x<node.position.x))
             break;
     }
     [portals insertObject:portal atIndex:i];
