@@ -32,6 +32,8 @@
 #define PORTAL_ 70
 
 #define FILEPATH "/Users/Piupas/Desktop/Fases/"
+#define DEFAULTWORKSPACEPATH "/Users/lmenezes/MWAPPTECH/HB_StageBuilder/out/"
+
 //EDITAR AQUI. BOTEM O CAMINHO ONDE VAO CRIAR O ARQUIVO
 
 #define MIRROR "mirror"
@@ -55,6 +57,9 @@ SKShapeNode *line;
 NSDictionary *codesDict;
 CGPoint firstPoint;
 bool drawState;
+NSString * filePath;
+NSString * workspace;
+
 
 -(void)didMoveToView:(SKView *)view {
     drawState=false;
@@ -81,18 +86,21 @@ bool drawState;
     [self drawGridWithLines:quantLin Columns:quantCol inRect:gameRect];
 }
 
--(void)prepareDictionary{
+-(void)prepareDictionary
+{
     NSArray *keys = [[NSArray alloc]initWithObjects:@MIRROR, @RECEPTOR, @WALL, @WALLBOX, @KEY, @PORTAL,nil];
     NSArray *codes = [[NSArray alloc]initWithObjects:@MIRROR_1, @RECEPTOR_, @WALL_H, @WALL_BOX, @KEY_, @PORTAL_, nil];
     codesDict = [[NSDictionary alloc] initWithObjects:codes forKeys:keys];
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     /* Called when a touch begins */
     [self.view endEditing:YES];
     if(touches.count>1)
         return;
-    for (UITouch *touch in touches) {
+    for (UITouch *touch in touches)
+    {
         CGPoint location = [touch locationInNode:self];
         if(CGRectContainsPoint(gameRect, location)){
             [self gridTouchBegan:location];
@@ -105,8 +113,10 @@ bool drawState;
     }
 }
 
--(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    for(UITouch *touch in touches){
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for(UITouch *touch in touches)
+    {
         CGPoint location = [touch locationInNode:self];
         if(selectedNode.name!=NULL){
             selectedNode.position=location;
@@ -119,15 +129,20 @@ bool drawState;
     }
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    for(UITouch *touch in touches){
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    for(UITouch *touch in touches)
+    {
         CGPoint location = [touch locationInNode:self];
-        if(selectedNode.name!=NULL){
-            if(CGRectContainsPoint(gameRect, location)){
+        if(selectedNode.name!=NULL)
+        {
+            if(CGRectContainsPoint(gameRect, location))
+            {
                 //drag to grid
                 [self placeElementOnPoint:location];
             }
-            else{
+            else
+            {
                 [selectedNode removeFromParent];
             }
         }
@@ -141,7 +156,8 @@ bool drawState;
 }
 
 
--(void)placeElementOnPoint:(CGPoint)location{
+-(void)placeElementOnPoint:(CGPoint)location
+{
     NSInteger coordinateX = location.x/sizex, coordinateY = location.y/sizey;
     CGPoint point = CGPointMake(coordinateX*sizex+sizex/2, coordinateY*sizey+sizey/2);
     selectedNode.position=CGPointMake(1000,1000);
@@ -352,9 +368,39 @@ bool drawState;
 
 -(void)writeToTxt{
     NSString *filename = self.writeFileText.text;
-    NSString *path = [NSString stringWithFormat:@"%s%@.txt", FILEPATH, filename];
+    workspace=@DEFAULTWORKSPACEPATH ;
+    //workspace=@FILEPATH;
+    if(filename.length==0)
+        filename= [NSString stringWithFormat:@"levelR%d",arc4random_uniform(3000)];
+    NSString *path = [NSString stringWithFormat:@"%@%@.txt",workspace, filename];
     FILE *arq;
     arq=fopen([path UTF8String],"wt");
+    if(arq==NULL)
+    {
+        NSLog(@"Error path: %@ does not exist. Please especify one that exists",path);
+        UIAlertController* notFoundAlert;
+        notFoundAlert= [[UIAlertController alloc] init];
+        notFoundAlert =
+        [UIAlertController
+         alertControllerWithTitle:@"Warning"
+         message: [NSString stringWithFormat:@"Error path: %@ does not exist. Please especify one that exists",path]
+         preferredStyle:[[UIDevice currentDevice].model containsString:@"iPad"]?UIAlertControllerStyleAlert:UIAlertControllerStyleActionSheet];
+        //If iPad StyleAlert else (iPhone) StyleActionSheet
+        UIAlertAction* okButton = [UIAlertAction
+                                    actionWithTitle:@"ok"
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action)
+                                    {
+                                        [notFoundAlert dismissViewControllerAnimated:YES completion:nil];
+                                        
+                                    }];
+       
+        [notFoundAlert addAction:okButton];
+        [self.view.window.rootViewController presentViewController:notFoundAlert animated:YES completion:nil];
+        return;
+        
+    }
+    
     CGPoint initial = CGPointMake(sizex/2, sizey*quantLin-sizey/2);
     NSInteger i,j;
     int code;
